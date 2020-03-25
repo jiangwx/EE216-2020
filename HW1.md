@@ -22,7 +22,7 @@ module fifo(
 );
 ```
 ![image](pic/HW1/3.png)
-As shown above, at 30ns, buf_in is 1, the fifo get the data and the fifo_cnt becomes 1. At 50ns, the read signal is enabled then you can get 1 at the output port. At 190ns, there are totally 9 data wrote into the fifo and 1 data read from the fifo, so there are 8 data in the fifo and the full signal becomes 1. When the fifo is full, you cannot push any extra data to it. At 200ns, the write signal is set to 0 and the read signal is set to 1, 1 data is read from the fifo and then the full signal comes back to 0. Since the testbench is given to you, you should try to generate the same waveform as the above one. The testbench is given in <src/fifo_tb.v>
+As shown above, at 30ns, buf_in is 1, the fifo get the data and the fifo_cnt becomes 1. At 50ns, the read signal is enabled then you can get 1 at the output port. At 190ns, there are totally 9 data wrote into the fifo and 1 data read from the fifo, so there are 8 data in the fifo and the full signal becomes 1. When the fifo is full, you cannot push any extra data to it. At 200ns, the write signal is set to 0 and the read signal is set to 1, 1 data is read from the fifo and then the full signal comes back to 0. Since the testbench is given to you, you should try to generate the same waveform as the above one. The testbench is given in [<src/fifo_tb.v>](<src/fifo_tb.v>)
 
 # Submit
 + You should submit:
@@ -33,4 +33,4 @@ The answer and the secreenshot should be packaged into a pdf file.
 + File Organization Schema in Package:\
 EE216_HW1_[Name][ID].zip\
 ├─ fifo.v\
-└─ fifo.pdf\
+└─ fifo.pdf
