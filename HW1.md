@@ -18,7 +18,7 @@ module fifo(
 	input [7:0] buf_in,           // data input to be pushed to buffer
 	output reg [7:0] buf_out,     // port to output the data using pop
 	output empty, full,           // buffer empty and full indication 
-	output reg [7:0] fifo_cnt,  // number of data pushed in to buffer  
+	output reg [3:0] fifo_cnt,  // number of data pushed in to buffer  
 );
 ```
 ![image](pic/HW1/3.png)
