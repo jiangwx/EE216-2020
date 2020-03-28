@@ -9,7 +9,7 @@ module tb_fifo_counter;
 	wire buf_empty,buf_full;	// buffer empty and full indication 
 	wire [`BUF_WIDTH-1:0] fifo_cnt;  // number of data pushed in to buffer 
 	
-	fifo dut(clk,rst_n,buf_in,buf_out,wr_en,rd_en,buf_empty,buf_full,fifo_cnt);
+	fifo dut(.clk(clk),.rst_n(rst_n),.buf_in(buf_in),.buf_out(buf_out),.wr_en(wr_en),.rd_en(rd_en),.empty(buf_empty),.full(buf_full),.fifo_cnt(fifo_cnt));
 	
 	always #10 clk = ~clk;
 	
