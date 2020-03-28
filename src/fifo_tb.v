@@ -1,7 +1,7 @@
 `define BUF_WIDTH   4     //地址宽度为3+1，
 `define BUF_SIZE    (8)    //数据个数，FIFO深度
 
-module tb_fifo_counter;
+module tb_fifo;
 	reg clk,rst_n;
 	reg wr_en,rd_en;
 	reg [7:0] buf_in;		     // data input to be pushed to buffer
@@ -9,7 +9,7 @@ module tb_fifo_counter;
     wire buf_empty,buf_full;  // buffer empty and full indication 
 	wire [`BUF_WIDTH-1:0] fifo_cnt;  // number of data pushed in to buffer 
 	
-	fifo_counter dut(clk,rst_n,buf_in,buf_out,wr_en,rd_en,buf_empty,buf_full,fifo_cnt);
+	fifo dut(clk,rst_n,buf_in,buf_out,wr_en,rd_en,buf_empty,buf_full,fifo_cnt);
 	
 	always #10 clk = ~clk;
 	
