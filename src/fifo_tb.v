@@ -4,12 +4,12 @@
 module tb_fifo_counter;
 	reg clk,rst_n;
 	reg wr_en,rd_en;
-	reg [7:0] buf_in;			// data input to be pushed to buffer
-	wire [7:0] buf_out;			// port to output the data using pop.
-	wire buf_empty,buf_full;	// buffer empty and full indication 
+	reg [7:0] buf_in;		     // data input to be pushed to buffer
+	wire [7:0] buf_out;       // port to output the data using pop.
+    wire buf_empty,buf_full;  // buffer empty and full indication 
 	wire [`BUF_WIDTH-1:0] fifo_cnt;  // number of data pushed in to buffer 
 	
-	fifo dut(.clk(clk),.rst_n(rst_n),.buf_in(buf_in),.buf_out(buf_out),.wr_en(wr_en),.rd_en(rd_en),.empty(buf_empty),.full(buf_full),.fifo_cnt(fifo_cnt));
+	fifo_counter dut(clk,rst_n,buf_in,buf_out,wr_en,rd_en,buf_empty,buf_full,fifo_cnt);
 	
 	always #10 clk = ~clk;
 	
@@ -26,7 +26,7 @@ module tb_fifo_counter;
 		fork
 			push(2);
 			pop();
-		join//push and pop together   
+		join			//push and pop together   
 		push(10);
 		push(20);
 		push(30);
@@ -34,34 +34,21 @@ module tb_fifo_counter;
 		push(50);
 		push(60);
 		push(70);
-		push(80);
-		push(90);
-		push(100);
-		push(110);
-		push(120);
-		push(130);
-
 		pop();
-		push(45);
+		push(2);
 		pop();
 		pop();
 		pop();
 		pop();
 		push(140);
 		pop();
-		push(64);//
+		push(50);//
 		pop();
 		pop();
 		pop();
 		pop();
 		pop();
-		pop();
-		pop();
-		pop();
-		pop();
-		pop();
-		pop();
-		push(5);
+		push(140);
 		pop();
 		
 	end
