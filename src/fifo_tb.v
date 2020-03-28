@@ -4,12 +4,12 @@
 module tb_fifo_counter;
 	reg clk,rst_n;
 	reg wr_en,rd_en;
-	reg [7:0] buf_in;             // data input to be pushed to buffer
-	wire [7:0] buf_out;       // port to output the data using pop.
-    wire buf_empty,buf_full;  // buffer empty and full indication 
+	reg [7:0] buf_in;			// data input to be pushed to buffer
+	wire [7:0] buf_out;			// port to output the data using pop.
+	wire buf_empty,buf_full;	// buffer empty and full indication 
 	wire [`BUF_WIDTH-1:0] fifo_cnt;  // number of data pushed in to buffer 
 	
-	fifo_counter dut(clk,rst_n,buf_in,buf_out,wr_en,rd_en,buf_empty,buf_full,fifo_cnt);
+	fifo dut(clk,rst_n,buf_in,buf_out,wr_en,rd_en,buf_empty,buf_full,fifo_cnt);
 	
 	always #10 clk = ~clk;
 	
@@ -23,51 +23,51 @@ module tb_fifo_counter;
 		rst_n = 1;
 		
 		push(1);
-        fork
-           push(2);
-           pop();
-        join              //push and pop together   
-        push(10);
-        push(20);
-        push(30);
-        push(40);
-        push(50);
-        push(60);
-        push(70);
-        push(80);
-        push(90);
-        push(100);
-        push(110);
-        push(120);
-        push(130);
+		fork
+			push(2);
+			pop();
+		join//push and pop together   
+		push(10);
+		push(20);
+		push(30);
+		push(40);
+		push(50);
+		push(60);
+		push(70);
+		push(80);
+		push(90);
+		push(100);
+		push(110);
+		push(120);
+		push(130);
 
-        pop();
-        push(45);
-        pop();
-        pop();
-        pop();
-        pop();
+		pop();
+		push(45);
+		pop();
+		pop();
+		pop();
+		pop();
 		push(140);
-        pop();
-        push(64);//
-        pop();
-        pop();
-        pop();
-        pop();
-        pop();
-        pop();
-        pop();
-        pop();
-        pop();
-        pop();
-        pop();
-        push(5);
-        pop();
+		pop();
+		push(64);//
+		pop();
+		pop();
+		pop();
+		pop();
+		pop();
+		pop();
+		pop();
+		pop();
+		pop();
+		pop();
+		pop();
+		push(5);
+		pop();
 		
 	end
 	
 	task push (input [7:0] data);
-    begin
+	begin
 			buf_in = data;
 			wr_en = 1;
 			@(posedge clk);
@@ -80,7 +80,7 @@ module tb_fifo_counter;
 			rd_en = 1;
 			@(posedge clk);
 			#3 rd_en = 0;
-    end
+	end
 	endtask
 	
 	
